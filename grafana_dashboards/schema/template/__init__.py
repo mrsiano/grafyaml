@@ -17,6 +17,7 @@ import voluptuous as v
 from grafana_dashboards.schema.template.base import Base
 from grafana_dashboards.schema.template.interval import Interval
 from grafana_dashboards.schema.template.query import Query
+from grafana_dashboards.schema.template.datasource import Datasource
 
 
 class Template(object):
@@ -45,6 +46,8 @@ class Template(object):
                     schema = Query().get_schema()
                 if template['type'] == 'interval':
                     schema = Interval().get_schema()
+                if template['type'] == 'datasource':
+                    schema = Datasource().get_schema()
 
                 res['list'].append(schema(template))
 
